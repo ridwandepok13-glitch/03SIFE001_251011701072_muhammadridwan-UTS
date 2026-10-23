@@ -1,4 +1,4 @@
- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div style="background:#f5f1eb;padding:25px;border-radius:18px;color:#292524;">
@@ -7,31 +7,27 @@
     <nav style="background:#242424;color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-radius:12px;">
         <strong style="font-size:24px;">🎵 Toko Alat Musik</strong>
 
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="{{ route('cart.index') }}"
-               style="background:#16a34a;color:white;text-decoration:none;padding:12px 20px;border-radius:9px;font-weight:bold;">
-                🛒 Keranjang
-            </a>
-
-            <a href="{{ route('instruments.create') }}"
-               style="background:#8b7355;color:white;text-decoration:none;padding:12px 20px;border-radius:9px;font-weight:bold;">
-                + Tambah Produk
-            </a>
-        </div>
+        <a href="{{ route('cart.index') }}"
+           style="background:#16a34a;color:white;text-decoration:none;padding:12px 20px;border-radius:9px;font-weight:bold;">
+            🛒 Keranjang
+        </a>
     </nav>
 
-    {{-- LOBBY --}}
+    {{-- HERO --}}
     <section style="max-width:1250px;margin:30px auto;">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;align-items:center;background:#e9e3da;padding:30px;border-radius:18px;">
             <div>
-                <p style="color:#8b7355;font-weight:bold;letter-spacing:3px;">SELAMAT DATANG DI</p>
+                <p style="color:#8b7355;font-weight:bold;letter-spacing:3px;">
+                    SELAMAT DATANG DI
+                </p>
 
                 <h1 style="font-family:Georgia,serif;font-size:clamp(40px,5vw,65px);line-height:1.1;margin:15px 0;">
                     TOKO ALAT<br>MUSIK
                 </h1>
 
                 <p style="font-size:17px;line-height:1.8;color:#57534e;">
-                    Temukan alat musik favoritmu, mulai dari gitar, drum, keyboard, hingga berbagai alat musik lainnya.
+                    Temukan alat musik favoritmu, mulai dari gitar, drum,
+                    keyboard, hingga berbagai alat musik lainnya.
                 </p>
 
                 <a href="#produk"
@@ -44,32 +40,20 @@
                 <img
                     src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1000&q=85"
                     alt="Studio alat musik"
-                    onerror="this.onerror=null;this.src='https://placehold.co/800x450/e9e3da/57534e?text=Toko+Alat+Musik';"
                     style="width:100%;height:320px;object-fit:cover;border-radius:14px;">
             </div>
         </div>
     </section>
 
-    {{-- DAFTAR PRODUK --}}
+    {{-- DAFTAR PRODUK DARI DATABASE --}}
     <section id="produk" style="max-width:1250px;margin:35px auto;">
-        <p style="color:#8b7355;font-weight:bold;letter-spacing:3px;">KOLEKSI KAMI</p>
-        <h2 style="font-family:Georgia,serif;font-size:34px;margin-bottom:25px;">Daftar Produk</h2>
+        <p style="color:#8b7355;font-weight:bold;letter-spacing:3px;">
+            KOLEKSI KAMI
+        </p>
 
-        {{-- PESAN SUKSES --}}
-        @if (session('success'))
-            <div style="background:#dcfce7;color:#166534;padding:15px;border-radius:10px;margin-bottom:20px;">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        {{-- PESAN ERROR --}}
-        @if ($errors->any())
-            <div style="background:#fee2e2;color:#991b1b;padding:15px;border-radius:10px;margin-bottom:20px;">
-                @foreach ($errors->all() as $error)
-                    <p style="margin:0;">{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
+        <h2 style="font-family:Georgia,serif;font-size:34px;margin-bottom:25px;">
+            Daftar Produk
+        </h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;">
 
@@ -85,10 +69,9 @@
                                 alt="{{ $instrument->name }}"
                                 style="width:100%;height:100%;object-fit:contain;">
                         @else
-                            <img
-                                src="https://placehold.co/400x250/e7e5e4/57534e?text=Alat+Musik"
-                                alt="Foto belum tersedia"
-                                style="width:100%;height:100%;object-fit:contain;">
+                            <div style="color:#78716c;text-align:center;">
+                                🎵<br>Gambar belum tersedia
+                            </div>
                         @endif
                     </div>
 
@@ -111,7 +94,7 @@
                         </h3>
                     </div>
 
-                    {{-- TOMBOL KERANJANG --}}
+                    {{-- TAMBAH KE KERANJANG --}}
                     <form action="{{ route('cart.add', $instrument->id) }}"
                           method="POST"
                           style="margin:0 0 10px;">
@@ -123,48 +106,21 @@
                         </button>
                     </form>
 
-                    {{-- TOMBOL DETAIL, EDIT, HAPUS --}}
-                    <div style="display:flex;flex-direction:column;gap:10px;margin-top:5px;">
+                    {{-- DETAIL PRODUK --}}
+                    <a href="{{ route('instruments.show', $instrument) }}"
+                       style="display:block;text-align:center;background:#292524;color:white;padding:12px;border-radius:10px;text-decoration:none;font-weight:bold;">
+                        👁 Lihat Detail
+                    </a>
 
-                        <a href="{{ route('instruments.show', $instrument) }}"
-                           style="display:block;text-align:center;background:#292524;color:white;padding:12px;border-radius:10px;text-decoration:none;font-weight:bold;">
-                            👁 Lihat Detail
-                        </a>
-
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-
-                            <a href="{{ route('instruments.edit', $instrument) }}"
-                               style="display:block;text-align:center;background:#fef3c7;color:#92400e;padding:11px 5px;border:1px solid #fde68a;border-radius:10px;text-decoration:none;font-weight:bold;">
-                                ✏️ Edit
-                            </a>
-
-                            <form action="{{ route('instruments.destroy', $instrument) }}"
-                                  method="POST"
-                                  style="margin:0;"
-                                  onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit"
-                                        style="width:100%;background:#fee2e2;color:#b91c1c;padding:11px 5px;border:1px solid #fecaca;border-radius:10px;font-weight:bold;cursor:pointer;">
-                                    🗑 Hapus
-                                </button>
-                            </form>
-
-                        </div>
-                    </div>
                 </div>
 
             @empty
                 <div style="grid-column:1/-1;background:white;padding:40px;text-align:center;border-radius:15px;">
                     <div style="font-size:55px;">🎸</div>
                     <h3>Belum Ada Produk</h3>
-                    <p style="color:#78716c;">Tambahkan produk alat musik pertama kamu.</p>
-
-                    <a href="{{ route('instruments.create') }}"
-                       style="display:inline-block;background:#292524;color:white;padding:12px 20px;border-radius:9px;text-decoration:none;">
-                        + Tambah Produk
-                    </a>
+                    <p style="color:#78716c;">
+                        Data produk belum tersedia. Silakan periksa Seeder.
+                    </p>
                 </div>
             @endforelse
 

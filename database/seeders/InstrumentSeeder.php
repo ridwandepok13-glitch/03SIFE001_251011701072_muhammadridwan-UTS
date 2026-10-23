@@ -2,70 +2,52 @@
 
 namespace Database\Seeders;
 
-use App\Models\Instrument;
 use Illuminate\Database\Seeder;
+use App\Models\Instrument;
 
 class InstrumentSeeder extends Seeder
 {
     public function run(): void
     {
-        $items = [
+        $instruments = [
             [
-                'name' => 'Gitar Akustik',
+                'name' => 'Yamaha F310',
                 'brand' => 'Yamaha',
-                'price' => 1250000,
-                'description' => 'Gitar akustik dengan suara hangat, cocok untuk pemula maupun pemain berpengalaman.',
-                'image' => 'guitar.svg',
-                'type' => 'Gitar',
+                'type' => 'Gitar Akustik',
+                'price' => 2199000,
+                'description' => 'Gitar akustik berkualitas untuk pemula dan musisi.',
+                'image' => 'instruments/yamaha-f310.jpg',
             ],
             [
-                'name' => 'Keyboard Elektrik',
-                'brand' => 'Casio',
-                'price' => 1850000,
-                'description' => 'Keyboard elektrik dengan beragam suara instrumen dan fitur latihan untuk belajar musik.',
-                'image' => 'keyboard.svg',
+                'name' => 'Yamaha PSR-E373',
+                'brand' => 'Yamaha',
                 'type' => 'Keyboard',
+                'price' => 3500000,
+                'description' => 'Keyboard dengan berbagai pilihan suara.',
+                'image' => 'instruments/yamaha-psr-e373.jpg',
             ],
             [
-                'name' => 'Drum Akustik',
+                'name' => 'Pearl Drum Set',
                 'brand' => 'Pearl',
-                'price' => 4250000,
-                'description' => 'Set drum untuk latihan dan pertunjukan dengan karakter suara yang kuat.',
-                'image' => 'drums.svg',
                 'type' => 'Drum',
+                'price' => 4500000,
+                'description' => 'Set drum untuk latihan dan pertunjukan.',
+                'image' => 'instruments/pearl-drum.jpg',
             ],
             [
-                'name' => 'Biola Pemula',
-                'brand' => 'Stentor',
-                'price' => 980000,
-                'description' => 'Biola untuk pemula yang ingin mempelajari teknik dasar permainan gesek.',
-                'image' => 'violin.svg',
-                'type' => 'Biola',
-            ],
-            [
-                'name' => 'Ukulele',
-                'brand' => 'Kala',
-                'price' => 450000,
-                'description' => 'Ukulele berukuran ringkas, mudah dibawa, dan cocok dimainkan saat bersantai.',
-                'image' => 'ukulele.svg',
-                'type' => 'Senar',
-            ],
-            [
-                'name' => 'Gitar Elektrik',
+                'name' => 'Fender Squier Bass',
                 'brand' => 'Squier',
-                'price' => 2750000,
-                'description' => 'Gitar elektrik dengan desain klasik untuk berbagai genre musik.',
-                'image' => 'electric-guitar.svg',
-                'type' => 'Gitar',
+                'type' => 'Bass',
+                'price' => 3200000,
+                'description' => 'Gitar bass untuk berbagai genre musik.',
+                'image' => 'instruments/squier-bass.jpg',
             ],
-        ]
+        ];
 
-        ;
-
-        foreach ($items as $item) {
+        foreach ($instruments as $instrument) {
             Instrument::updateOrCreate(
-                ['name' => $item['name']],
-                $item
+                ['name' => $instrument['name']],
+                $instrument
             );
         }
     }
